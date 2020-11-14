@@ -7,12 +7,7 @@ import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
 import Utility from './Utility';
 function Drag(props) {
-  const [show, setShow] = useState(false);
-
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
-  const colorRef=useRef();
-  const numRef=useRef();
+  
   const [currentID, setCurrentID] = useState(null);
 
   //CUSTOM DRAG AND DROP FEATURE. 
@@ -61,7 +56,7 @@ function Drag(props) {
         var selectedText = getSelectedText();
         if (selectedText) {
           setCurrentID(document.activeElement.id);
-          setShow(true);
+         // setShow(true);
           props.setShowModal();
         }
       }
@@ -229,7 +224,7 @@ function Drag(props) {
         <button style={{float:"right",position:'sticky',marginTop:'-100px'}} onClick={() => save()}  className="btn btn-primary" >Save my work</button>
         <button style={{float:"right",position:'sticky',marginTop:'-60px'}} onClick={() => clear()}  className="btn btn-danger" >Clear all my work</button>
         <p  style={{float:"right",position:'sticky',marginTop:'-25px'}}>Ctrl+A or Highlight any text to apply styles</p>
-            <div onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{margin:'auto',height:'500px',width:'90%',border:'2px solid white',zIndex:'100'}}>
+            <div  onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{margin:'auto',height:'600px',width:'90%',border:'2px solid black',zIndex:'100'}}>
                 {convertJsonToHtml()}
                  {renderDrags()}
                  
