@@ -6,14 +6,15 @@ import Drag from './drag';
 import { connect } from 'react-redux';
 
 function Drop(props) {
+ 
  //DRAG AND DROP FROM HTML API
     function allowDrop(ev) {
         ev.preventDefault();
       }
       
       function drag(ev) {
-        console.log(ev.target.id,'dragging')
-        ev.dataTransfer.setData("text", ev.target.id);
+        console.log(ev.target.id,'dragging');
+          ev.dataTransfer.setData("text", ev.target.id);
       }
       
       function drop(ev) {
@@ -21,13 +22,16 @@ function Drop(props) {
         var data = ev.dataTransfer.getData("text");
         
         if(document.getElementById(data)){
-          console.log(data,ev);
-          document.getElementById(data).draggable=false;
-          document.getElementById(data).ondragstart=function(){return false;}
-          ev.target.appendChild(document.getElementById(data));
+         // document.getElementById(data).draggable=false;
+         // document.getElementById(data).ondragstart=function(){return false;}
+          let clone = document.getElementById(data).cloneNode(true);
+          clone.id=data+'clone';
+          console.log('clone',clone)
+          document.body.appendChild(clone);
+          ev.target.appendChild(document.getElementById(data+'clone'));
           props.setData(data);
-          props.setElements(data);
-          let element = document.getElementById(data);
+          //props.setElements(data);
+          let element = document.getElementById(data+'clone');
           element.parentNode.removeChild(element);
         }
         
@@ -37,7 +41,7 @@ function Drop(props) {
          return props.elems.map((elem,index) => 
            {  
            switch(elem)
-             {
+             { 
                
                  case "img":
                 {
@@ -70,6 +74,11 @@ function Drop(props) {
                 case "smile":
                 {
                    return <img id="smile" onDragStart={(event)=>drag(event)} draggable="true" src="https://upload.wikimedia.org/wikipedia/en/1/12/Yellow_Smiley_Face.png" height="70px" width="70px" />
+                }
+               
+                default:
+                {
+                   return '';
                 }
                 
              }
@@ -104,8 +113,7 @@ const mapStateToProps = state => {
 }
 const mapDispatchToProps = dispatch => {
   return {
-     setData:(data) => dispatch({type:'ADD_ELEMENT',payload:data}),
-     setElements:(data) => dispatch({type:'ELEMENTS',payload:data}) ,
+     setData:(data) => dispatch({type:'ADD_ELEMENT',payload:data})
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Drop);
