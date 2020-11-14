@@ -24,15 +24,16 @@ function Drop(props) {
         if(document.getElementById(data)){
          // document.getElementById(data).draggable=false;
          // document.getElementById(data).ondragstart=function(){return false;}
-          let clone = document.getElementById(data).cloneNode(true);
-          clone.id=data+'clone';
-          console.log('clone',clone)
-          document.body.appendChild(clone);
-          ev.target.appendChild(document.getElementById(data+'clone'));
+         
+          //let clone = document.getElementById(data).cloneNode(true);
+          //clone.id=data+'clone';
+          //console.log('clone',clone)
+          //document.body.appendChild(clone);
+          //ev.target.appendChild(document.getElementById(data+'clone'));
           props.setData(data);
           //props.setElements(data);
-          let element = document.getElementById(data+'clone');
-          element.parentNode.removeChild(element);
+          //let element = document.getElementById(data+'clone');
+          //element.parentNode.removeChild(element);
         }
         
       }
