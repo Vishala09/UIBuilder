@@ -34,7 +34,7 @@ function Utility(props) {
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.textDecoration ='underline'}}><u>U</u></Button>
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.background=colorRef.current.value}}>Background</Button>
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.border='5px solid '+colorRef.current.value}}>Border Color</Button>
-                    <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.border =numRef.current.value+' solid '+colorRef.current.value}}>Border Width</Button>
+                    <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.border =numRef.current.value+'px solid '+colorRef.current.value}}>Border Width</Button>
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.color=colorRef.current.value}}>Color</Button>
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.height=numRef.current.value+'px'}}>Height</Button>
                     <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.width=numRef.current.value+'px'}}>Width</Button>
