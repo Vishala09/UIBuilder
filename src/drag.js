@@ -5,6 +5,7 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
+import Utility from './Utility';
 function Drag(props) {
   const [show, setShow] = useState(false);
 
@@ -61,6 +62,7 @@ function Drag(props) {
         if (selectedText) {
           setCurrentID(document.activeElement.id);
           setShow(true);
+          props.setShowModal();
         }
       }
 
@@ -199,7 +201,7 @@ function Drag(props) {
                 }
                 case "hr":
                 {
-                    return <p id={elem+index} style={{width:'100%',height:'2px',background:'gray'}} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}></p>
+                    return <p id={elem+index} style={{width:'80%',height:'2px',background:'gray'}} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}></p>
                 }
                 case "h1":
                   {
@@ -233,44 +235,27 @@ function Drag(props) {
                  
             </div>
                  
-      <Modal show={show} onHide={handleClose}>
-        <Modal.Header closeButton>
-          <Modal.Title>Style your UI 
-            <input type="color" ref={colorRef} />
-            <input type="number" ref={numRef} placeholder="Enter height or width in px" />
-          </Modal.Title>
-        </Modal.Header>
-        <Modal.Body>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.fontWeight='bold'}}>B</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.fontStyle='italic'}}>Italics</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.textDecoration ='underline'}}>Underline</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.background=colorRef.current.value}}>Background</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.border='5px solid '+colorRef.current.value}}>Border Color</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.border =numRef.current.value+' solid '+colorRef.current.value}}>Border Width</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.color=colorRef.current.value}}>Color</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.height=numRef.current.value+'px'}}>Height</Button>
-              <Button variant="secondary" onClick={()=>{document.getElementById(currentID).style.width=numRef.current.value+'px'}}>Width</Button>
-              
-        </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
-            Close
-          </Button>
-        </Modal.Footer>
-      </Modal>
+      
+      {
+        //To update Styles for elements in UI
+         props.show && <Utility  currentID={currentID} />
+      }
+      
       </div>
     )
 }
 const mapStateToProps = state => {
   return {
      droppedElems:state.dropReducer,
-     savedElems:state.storageReducer
+     savedElems:state.storageReducer,
+     show:state.currentIdReducer.show
   }
 }
 const mapDispatchToProps = dispatch => {
   return {
       saveWork:(json) => dispatch({type:'SET_IN_STORAGE',payload:json}),
-      setData:(data) => dispatch({type:'ADD_ELEMENT',payload:data})
+      setData:(data) => dispatch({type:'ADD_ELEMENT',payload:data}),
+      setShowModal:() => dispatch({type:'SET_TRUE'}),
   }
 }
 export default connect(mapStateToProps,mapDispatchToProps)(Drag);
