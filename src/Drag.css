@@ -18,7 +18,11 @@
 .hr{
     width:50%;
     height:2px;
-    background:gray
+    background:gray;
+    position: relative;
+    top:50%;
+    left:20%;
+    cursor: pointer;
 }
 
 .heading1{
