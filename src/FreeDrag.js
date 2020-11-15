@@ -4,19 +4,16 @@
               //ONCE MOUSE IS UP,MOUSE MOVE IS REMOVED
         export  function mousedown(event,id) {
         
-                let ball = document.getElementById(id);
+               let ball = document.getElementById(id);
                let shiftX = event.clientX - ball.getBoundingClientRect().left;
                let shiftY = event.clientY - ball.getBoundingClientRect().top;
                ball.style.position = 'absolute';
-               moveAt(event.pageX, event.pageY);
+              // moveAt(event.pageX, event.pageY);
                function moveAt(pageX, pageY) {
-            
-                {
-                    ball.style.left = pageX - shiftX + 'px';
-                    ball.style.top = pageY - shiftY + 'px';
-                }
-                          
-                       
+                    {
+                        ball.style.left = pageX - shiftX + 'px';
+                        ball.style.top = pageY - shiftY + 'px' 
+                    }   
                }
                function onMouseMove(event) {
                    moveAt(event.pageX, event.pageY);
