@@ -1,0 +1,31 @@
+.centerElem{
+    top:50%;
+    left: 45%;
+    position: absolute;
+    cursor: pointer;
+}
+
+.borderForElem{
+    border:2px solid black
+}
+
+.borderForDiv{
+    border:2px solid black;
+    width:200px;
+    height: 200px;
+}
+
+.hr{
+    width:50%;
+    height:2px;
+    background:gray
+}
+
+.heading1{
+    width: 200px;
+    background-color: aliceblue;
+}
+
+.cursorpointer{
+    cursor: pointer;
+}

@@ -24,11 +24,4 @@ span{
     cursor: pointer;
 }
 
-textarea {
-    resize: none;
-  }
 
-.para{
-    border: 2px solid black;
-    width: 100px;
-}

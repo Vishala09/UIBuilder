@@ -1,4 +1,4 @@
-let initialState = ["button","para","input","div","hr","smile","h1"];
+let initialState = ["button","para","input","div","hr","smile","h1","coffee"];
 const setReducer = (state=initialState,action) => {
     switch(action.type)
     {

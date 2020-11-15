@@ -5,7 +5,10 @@ import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button'
 import ReactHtmlParser from 'react-html-parser';
 import { connect } from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'
 import Utility from './Utility';
+import './Drag.css';
 function Drag(props) {
   
   const [currentID, setCurrentID] = useState(null);
@@ -102,7 +105,7 @@ function Drag(props) {
                         {
                           let element = dom;
                           let style=element.style;
-                          let css=window.getComputedStyle(element,null)
+                          let css=window.getComputedStyle(element,null);
                           let i=0;
                           let obj={};
                           while(style[i])
@@ -113,8 +116,7 @@ function Drag(props) {
                           
                           let elemObj;
                           if(element.nodeName=='INPUT')
-                          {elemObj={type:elem,id:elem+index,styles:obj,text:element.value};
-                        }
+                          {elemObj={type:elem,id:elem+index,styles:obj,text:element.value};}
                           else
                           elemObj={type:elem,id:elem+index,styles:obj,text:element.textContent};
                           saveData.push(elemObj);
@@ -140,28 +142,32 @@ function Drag(props) {
                     }
                     case "para":
                     {
-                      return <p id={elem.id} className="button" style={elem.styles} contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</p>
+                      return <p id={elem.id}  style={elem.styles} className="button centerElem borderForElem" contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</p>
                     }
                     case "input":
                       {
-                        return <input type="text" id={elem.id} style={elem.styles}  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}/>
+                        return <input type="text" id={elem.id} style={elem.styles} className="centerElem"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}/>
                       }
                     case "div":
                       {
-                        return <div id={elem.id} style={elem.styles}  contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</div>
+                        return <div id={elem.id} style={elem.styles} className="centerElem borderForDiv" contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</div>
                       }
                       case "hr":
                     {
-                           return <p id={elem.id} style={elem.styles} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}></p>
+                           return <p id={elem.id} style={elem.styles} className="centerElem hr cursorpointer" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}></p>
                     }
                     case "h1":
                       {
-                          return <h1 id={elem.id} contentEditable="true"  style={elem.styles} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</h1>
+                          return <h1 id={elem.id} contentEditable="true" className="centerElem heading1"  style={elem.styles} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)}>{elem.text}</h1>
                       }
-                      case "smile":
+                   case "smile":
                         {
-                           return <img id={elem.id} style={elem.styles} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)} src="https://upload.wikimedia.org/wikipedia/en/1/12/Yellow_Smiley_Face.png" height="70px" width="70px" />
+                           return <img id={elem.id} style={elem.styles} className="centerElem" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)} src="https://upload.wikimedia.org/wikipedia/en/1/12/Yellow_Smiley_Face.png" height="70px" width="70px" />
                         } 
+                   case "coffee":
+                          {
+                            return  <p id={elem.id} style={elem.styles} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id)} className="cursorpointer" ><FontAwesomeIcon   icon={faCoffee} /></p>;
+                         }  
                }
            })
       }
@@ -176,37 +182,41 @@ function Drag(props) {
             {
                 case "img":
                 {
-                   return <img id={elem+index}  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)} src="https://en.js.cx/clipart/ball.svg"></img>
+                   return <img id={elem+index} className="centerElem"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)} src="https://en.js.cx/clipart/ball.svg"></img>
                 }
                 case "button":
                {
-                   return <button id={elem+index} className="button" contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>Button</button>
+                   return <button id={elem+index}  className="button centerElem" contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>Button</button>
                }
                case "input":
                 {
-                  return <input id={elem+index}   type="text" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}/>
+                  return <input id={elem+index} className="centerElem"  type="text" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}/>
                 }
                 case "para":
                 {
-                  return <p id={elem+index}  contentEditable="true" className="para"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>Paragraph</p>
+                  return <p id={elem+index} className="centerElem borderForElem" contentEditable="true" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>Paragraph</p>
                 }
                 case "div":
                 {
-                  return <div id={elem+index} contentEditable="true"  style={{border:'2px solid black',width:'200px'}} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>DIV</div>
+                  return <div id={elem+index} className="centerElem borderForDiv" contentEditable="true" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>DIV</div>
                 }
                 case "hr":
                 {
-                    return <p id={elem+index} style={{width:'80%',height:'2px',background:'gray'}} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}></p>
+                    return <p id={elem+index} className="centerElem hr cursorpointer"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}></p>
                 }
                 case "h1":
+                {
+                    return <h1 id={elem+index} className="centerElem heading1" contentEditable="true" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>H1</h1>
+                }
+                case "smile":
                   {
-                      return <h1 id={elem+index} contentEditable="true"  style={{width:'200px'}} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}>H1</h1>
-                  }
-                  case "smile":
-                    {
-                       return <img id={elem+index} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)} src="https://upload.wikimedia.org/wikipedia/en/1/12/Yellow_Smiley_Face.png" height="70px" width="70px" />
-                    } 
-                    
+                      return <img id={elem+index} className="centerElem" onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)} src="https://upload.wikimedia.org/wikipedia/en/1/12/Yellow_Smiley_Face.png" height="70px" width="70px" />
+                  } 
+             case "coffee":
+                {
+                  return  <p  className="cursorpointer " ><FontAwesomeIcon id={elem+index} onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem+index)}   icon={faCoffee} /></p>;
+                      
+               }      
             }
            }
          )
@@ -224,7 +234,7 @@ function Drag(props) {
         <button style={{float:"right",position:'sticky',marginTop:'-100px'}} onClick={() => save()}  className="btn btn-primary" >Save my work</button>
         <button style={{float:"right",position:'sticky',marginTop:'-60px'}} onClick={() => clear()}  className="btn btn-danger" >Clear all my work</button>
         <p  style={{float:"right",position:'sticky',marginTop:'-25px'}}>Ctrl+A or Highlight any text to apply styles</p>
-            <div  onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{margin:'auto',height:'600px',width:'90%',border:'2px solid black',zIndex:'100'}}>
+            <div data-testid="toBeDraggedelements"   onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{margin:'auto',height:'600px',width:'90%',border:'2px solid black',zIndex:'100'}}>
                 {convertJsonToHtml()}
                  {renderDrags()}
                  

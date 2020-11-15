@@ -1,0 +1,15 @@
+.allElements{
+    height:100px;
+    width:100%; 
+    border:3px solid blue;
+    background:gainsboro;
+    overflow:auto;
+    padding:10px
+}
+
+.droppedElems{
+    margin:auto;
+    height:100px;
+    width:90%
+}
+
