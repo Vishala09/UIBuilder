@@ -5,7 +5,7 @@ import ReactHtmlParser from 'react-html-parser';
 import Drag from './drag';
 import { connect } from 'react-redux';
 import './Drop.css';
-import getConstantsElements from './Elements'
+import GetConstantsElements from './Elements'
 function Drop(props) {
  
  //DRAG AND DROP FROM HTML API
@@ -13,23 +13,19 @@ function Drop(props) {
         ev.preventDefault();
       }
       
-      function drag(ev) {
-        console.log(ev.target.id,'dragging');
-          ev.dataTransfer.setData("text", ev.target.id);
-      }
-      
       function drop(ev) {
         ev.preventDefault();
         var data = ev.dataTransfer.getData("text");
-        
+       
         if(document.getElementById(data)){
+          document.getElementById(data).style.opacity=1;
           props.setData(data);
         }
         
-      }
+    }
 //RENDER CONSTANT ELEMENTS TO BE DRAGGED ON TOP
       const renderElements = () => {
-        return getConstantsElements()
+        return GetConstantsElements()
       }
 
     return (

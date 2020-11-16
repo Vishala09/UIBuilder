@@ -133,13 +133,11 @@ function Drag(props) {
         <button style={{float:"right",position:'sticky',marginTop:'-60px'}} onClick={() => clear()}  className="btn btn-danger" >Clear all my work</button>
         <p  style={{float:"right",position:'sticky',marginTop:'-25px'}}>Ctrl+A or Highlight any text to apply styles , Elements outside outer border won't be saved</p>
    
-            <div data-testid="toBeDraggedelements"   onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{marginLeft:'50px',marginRight:'50px',height:'600px',width:'90%',border:'2px solid black',zIndex:'100'}}>
+            <div data-testid="toBeDraggedelements"   onMouseUp={()=>makeStyle()} onKeyUp={() => makeStyle()} id="droppedelems"  style={{marginLeft:'50px',marginRight:'50px',height:'80vh',width:'90%',border:'2px solid black',zIndex:'100'}}>
                 {convertJsonToHtml()}
                  {renderDrags()}
                  
             </div>
-
-    
       {
         //To update Styles for elements in UI
          props.show && <Utility  currentID={currentID} />
