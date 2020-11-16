@@ -72,7 +72,7 @@ function Drag(props) {
                         let r1=document.getElementById('droppedelems').getBoundingClientRect().right;
                         let r2=dom.getBoundingClientRect().right;
                         //console.log(l1,l2)
-                        if(dom && (l1<l2 && r1>r2 && b1>b2))
+                        if(dom && (l1<=l2 && r1>=r2 && b1>=b2))
                         {
                           let element = dom;
                           let style=element.style;

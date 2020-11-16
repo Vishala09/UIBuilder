@@ -17,10 +17,23 @@
                ball.style.position = 'absolute';
               // moveAt(event.pageX, event.pageY);
                function moveAt(pageX, pageY) {
+                let l1=document.getElementById('droppedelems').getBoundingClientRect().left;
+                let l2=ball.getBoundingClientRect().left;
+                let b1=document.getElementById('droppedelems').getBoundingClientRect().bottom;
+                let b2=ball.getBoundingClientRect().bottom;
+                let r1=document.getElementById('droppedelems').getBoundingClientRect().right;
+                let r2=ball.getBoundingClientRect().right;
+                if(l1<=l2 && r1>=r2 && b1>=b2)
                     {
                         ball.style.left = pageX - shiftX + 'px';
+                        ball.style.top = pageY - shiftY + 'px';
+                        ball.style.opacity=1;
+                    } 
+                else{
+                        ball.style.left = pageX - shiftX + 'px';
                         ball.style.top = pageY - shiftY + 'px' 
-                    }   
+                        ball.style.opacity=0.1;
+                    }  
                }
                function onMouseMove(event) {
                    moveAt(event.pageX, event.pageY);
