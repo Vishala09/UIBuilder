@@ -8,7 +8,7 @@ export default function GetSavedElements({elem}){
     {
         case "button":
          {
-             return <button ref={ref} id={elem.id} className="button" style={elem.styles} contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id,ref)}>{elem.text}</button>
+             return <button ref={ref} id={elem.id} className="button centerElem" style={elem.styles} contentEditable="true"  onDragStart={() => dragstart()} onMouseDown={(e)=>mousedown(e,elem.id,ref)}>{elem.text}</button>
          }
          case "para":
          {
